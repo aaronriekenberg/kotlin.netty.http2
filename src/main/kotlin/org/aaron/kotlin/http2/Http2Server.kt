@@ -45,7 +45,8 @@ fun main(args: Array<String>) {
     // Configure SSL.
     val sslCtx =
             if (Http2Server.SSL) {
-                val provider = if (OpenSsl.isAlpnSupported()) SslProvider.OPENSSL else SslProvider.JDK;
+                val provider = if (OpenSsl.isAlpnSupported()) SslProvider.OPENSSL else SslProvider.JDK
+                logger.info("ssl provider {}", provider)
                 val ssc = SelfSignedCertificate()
                 SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey())
                         .sslProvider(provider)
@@ -75,12 +76,12 @@ fun main(args: Array<String>) {
                 .handler(LoggingHandler(LogLevel.INFO))
                 .childHandler(Http2ServerInitializer(sslCtx))
 
-        val ch = b.bind(Http2Server.PORT).sync().channel();
+        val ch = b.bind(Http2Server.PORT).sync().channel()
 
         logger.info("Open your HTTP/2-enabled web browser and navigate to " +
-                (if (Http2Server.SSL) "https" else "http") + "://127.0.0.1:" + Http2Server.PORT + '/');
+                (if (Http2Server.SSL) "https" else "http") + "://127.0.0.1:" + Http2Server.PORT + '/')
 
-        ch.closeFuture().sync();
+        ch.closeFuture().sync()
     } finally {
         group.shutdownGracefully();
     }
