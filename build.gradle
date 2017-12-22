@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     ext {
-        kotlin_version = '1.2.0'
+        kotlin_version = '1.2.10'
         logback_version = '1.2.3'
         netty_version = '4.1.19.Final'
         netty_tcnative_version = '2.0.7.Final'

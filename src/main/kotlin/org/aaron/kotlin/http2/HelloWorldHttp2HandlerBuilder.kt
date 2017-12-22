@@ -7,11 +7,11 @@ class HelloWorldHttp2HandlerBuilder :
         AbstractHttp2ConnectionHandlerBuilder<HelloWorldHttp2Handler, HelloWorldHttp2HandlerBuilder>() {
 
     companion object {
-        private val logger = Http2FrameLogger(INFO, HelloWorldHttp2Handler::class.java)
+        private val LOGGER = Http2FrameLogger(INFO, HelloWorldHttp2Handler::class.java)
     }
 
     init {
-        frameLogger(logger)
+        frameLogger(LOGGER)
     }
 
     public override fun build(): HelloWorldHttp2Handler {
